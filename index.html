@@ -17,6 +17,7 @@
   --flag-soft:#F9DECB;
   --line:#CBC0A6;
   --ok:#3E7A4E;
+  --ok-soft:#DFEBE1;
   --open:#8A5A00;         /* unresolved / decision pending */
   --open-soft:#F5E7C8;
   --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -51,15 +52,23 @@ h1 .accent{color:var(--flag)}
 .head-meta b{color:var(--flag)}
 .stamp{
   position:absolute; right:22px; top:20px; transform:rotate(6deg);
-  border:2.5px solid var(--flag); color:var(--flag); border-radius:4px;
+  border:2.5px solid var(--ok); color:var(--ok); border-radius:4px;
   font-family:var(--mono); font-weight:600; font-size:12px; letter-spacing:.1em;
   padding:6px 10px; text-transform:uppercase; text-align:center; line-height:1.25;
-  background:rgba(233,84,13,.05);
+  background:rgba(62,122,78,.06);
 }
 @media (max-width:640px){.stamp{position:static;transform:none;display:inline-block;margin-top:10px}}
 
+/* ---------- nav ---------- */
+.toc{
+  margin-top:14px;background:var(--paper);border:1.5px solid var(--ink);padding:12px 16px;
+  display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12px;
+}
+.toc a{text-decoration:none;color:var(--steel)}
+.toc a:hover{color:var(--flag);text-decoration:underline}
+
 /* ---------- sections ---------- */
-section{margin-top:34px}
+section{margin-top:34px;scroll-margin-top:14px}
 h2{
   font-family:'Barlow Condensed','Arial Narrow',sans-serif; font-weight:700;
   font-size:26px; text-transform:uppercase; letter-spacing:.03em;
@@ -71,17 +80,26 @@ h2 .tag{
 }
 h2 .tag.orange{background:var(--flag)}
 h2 .tag.open{background:var(--open)}
+h2 .tag.ok{background:var(--ok)}
 h3.sub{font-family:'Barlow Condensed',sans-serif;font-size:19px;text-transform:uppercase;letter-spacing:.03em;margin:22px 0 8px}
 .card{background:var(--paper);border:1.5px solid var(--ink);padding:20px 22px}
 .note{font-size:13.5px;color:#4a4f56}
 .note b{color:var(--ink)}
+p + p{margin-top:10px}
 .callout{
   border-left:4px solid var(--flag); background:var(--flag-soft);
   padding:12px 16px; font-size:14px; margin-top:14px;
 }
 .callout.steel{border-left-color:var(--steel);background:#E3E9EE}
 .callout.open{border-left-color:var(--open);background:var(--open-soft)}
-.callout.ok{border-left-color:var(--ok);background:#DFEBE1}
+.callout.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.rule{
+  border:2px solid var(--flag);background:var(--flag-soft);padding:14px 18px;margin-top:16px;
+}
+.rule .rh{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--flag);font-weight:600;margin-bottom:5px}
+.rule p{font-size:14.5px}
+ul.tight{margin:8px 0 0 18px;font-size:14px}
+ul.tight li{padding:2.5px 0}
 
 /* ---------- decision blocks ---------- */
 .decision{border:2px dashed var(--open);background:var(--open-soft);padding:18px 20px;margin-top:16px}
@@ -127,109 +145,118 @@ a:hover{color:var(--flag)}
 .badge.v{background:#DBE8DD;color:var(--ok);border:1px solid var(--ok)}
 .badge.e{background:#EEE7D3;color:#8a6d1f;border:1px solid #b6975a}
 .badge.q{background:var(--open-soft);color:var(--open);border:1px solid var(--open)}
+.badge.own{background:#E3E9EE;color:var(--steel);border:1px solid var(--steel)}
 .subtotal td{background:#EDE6D2;font-weight:600;font-family:var(--mono);font-size:13px}
 .tblwrap{overflow-x:auto}
 
 /* ---------- cost summary ---------- */
-.totals{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media (max-width:640px){.totals{grid-template-columns:1fr}}
 .tot{border:1.5px solid var(--ink);background:var(--paper);padding:18px 20px;position:relative}
 .tot h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;text-transform:uppercase;letter-spacing:.03em}
-.tot .big{font-family:var(--mono);font-size:28px;font-weight:600;margin:6px 0 2px}
+.tot .big{font-family:var(--mono);font-size:30px;font-weight:600;margin:6px 0 2px}
 .tot .big small{display:block;font-size:13px;font-weight:400;color:#5b6067;margin-top:3px}
-.tot.rec{border-color:var(--flag);box-shadow:4px 4px 0 var(--flag)}
-.tot .pick{position:absolute;top:-11px;right:12px;background:var(--flag);color:#fff;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:2px 8px;text-transform:uppercase}
-.tot ul{list-style:none;margin-top:8px;font-size:13.5px}
-.tot li{padding:3px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:12px}
+.tot ul{list-style:none;margin-top:10px;font-size:13.5px}
+.tot li{padding:3.5px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:12px}
 .tot li:last-child{border-bottom:none}
 .tot li span:last-child{font-family:var(--mono);white-space:nowrap}
-
-/* ---------- delta table ---------- */
-.delta td:first-child{font-weight:600}
-.delta .old{font-family:var(--mono);color:#8a6d1f;font-size:13px}
-.delta .new{font-family:var(--mono);color:var(--ok);font-weight:600;font-size:13px}
 
 /* ---------- timeline ---------- */
 .timeline{display:grid;gap:0}
 .step{
-  display:grid;grid-template-columns:150px 1fr;gap:18px;padding:14px 0;
+  display:grid;grid-template-columns:186px 1fr;gap:18px;padding:14px 0;
   border-bottom:1px solid var(--line);
 }
 .step:last-child{border-bottom:none}
-.step .when{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--flag);text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+.step .when{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--flag);text-transform:uppercase;letter-spacing:.03em;padding-top:2px}
+.step .when em{display:block;font-style:normal;font-weight:400;font-size:11.5px;color:#5b6067;letter-spacing:.05em;margin-top:2px}
 .step h4{font-size:15.5px;font-weight:700;margin-bottom:3px}
 .step p{font-size:13.8px;color:#3c4147}
+.step.gate .when{color:var(--ok)}
+.step.gate h4{color:var(--ok)}
 @media (max-width:560px){.step{grid-template-columns:1fr}.step .when{padding-top:0}}
+
+/* ---------- numbered build steps ---------- */
+.bsteps{counter-reset:bs;margin-top:6px}
+.bstep{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.bstep:last-child{border-bottom:none}
+.bstep::before{
+  counter-increment:bs;content:counter(bs);
+  font-family:var(--mono);font-size:19px;font-weight:600;color:var(--paper);
+  background:var(--steel);width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+}
+.bstep.hot::before{background:var(--flag)}
+.bstep h4{font-size:15.5px;font-weight:700;margin-bottom:3px}
+.bstep p{font-size:13.8px;color:#3c4147}
+
+/* ---------- field manual grid ---------- */
+.fm{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:4px}
+.fmc{border:1.5px solid var(--ink);background:var(--paper);padding:14px 16px}
+.fmc h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:5px;color:var(--flag)}
+.fmc p{font-size:13.5px;color:#3c4147}
 
 /* ---------- footer ---------- */
 footer{margin-top:44px;border-top:2px solid var(--ink);padding-top:14px;font-size:12.5px;color:#5b6067}
 footer a{font-family:var(--mono);font-size:12px}
 .srcs{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
-@media print{body{background:#fff}.card,header,.tot,.decision{border-color:#000}}
+@media print{body{background:#fff}.card,header,.tot,.decision,.fmc{border-color:#000}.toc{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Black Rock City 2026 · Gate opens Sun Aug 30 · Build sheet v2</div>
+  <div class="eyebrow">Black Rock City 2026 · Gate opens Sun Aug 30 · Revised Sat Aug 1, 2026</div>
   <h1>Shade Build Sheet<br><span class="accent">40 × 30 ft</span> Flat-Top Steel</h1>
   <div class="head-meta">
-    <span>SYSTEM: 1" EMT + <b>flat 5-way fittings only</b> (one part number, 20 nodes)</span>
-    <span>FOOTPRINT: <b>1,200 sq ft</b> · shelters ~10 people / 6 tents</span>
-    <span>CUTS: <b>20 total, legs only</b> — zero roof cuts</span>
-    <span>STEEL: 54 sticks · ~335 lb to the playa</span>
+    <span>SYSTEM: 1" EMT + <b>flat 5-way fittings only</b> · 20 nodes, one part number</span>
+    <span>FOOTPRINT: <b>1,200 sq ft</b> · <b>10 ft</b> clear height · ~10 people / 6 tents</span>
+    <span>CUTS: <b>ZERO</b> — every pole is a full 10 ft</span>
+    <span>ROOF: <b>12 × 10'×10' tarps</b> · one size, all interchangeable</span>
   </div>
-  <div class="stamp">2 decisions<br>still open</div>
+  <div class="stamp">Anchoring<br>locked</div>
 </header>
 
-<!-- ================= WHY 40 ================= -->
-<section>
-  <h2>0 · Why 40 × 30, not 36 × 30 <span class="tag">supersedes v1</span></h2>
-  <div class="card">
-    <p>A 10-ft stick of EMT gives you bays in multiples of 10 ft. The old 36-ft number came from a
-    tutorial's plot, <b>not from a site constraint</b> — and it forced 16 roof poles to be cut down to
-    9 ft for no structural reason. Going to 40 ft snaps the frame onto the material's natural grid:
-    every roof pole is used full length, straight out of the bundle.</p>
-
-    <div class="tblwrap">
-    <table class="delta" style="margin-top:14px">
-      <thead><tr><th>&nbsp;</th><th>v1 — 36 × 30</th><th>v2 — 40 × 30</th><th>Net</th></tr></thead>
-      <tbody>
-        <tr><td>Covered area</td><td class="old">1,080 sq ft</td><td class="new">1,200 sq ft</td><td>+120 sq ft</td></tr>
-        <tr><td>Roof pole cuts</td><td class="old">16</td><td class="new">0</td><td>−16 cuts</td></tr>
-        <tr><td>Total cuts</td><td class="old">36</td><td class="new">20</td><td>−16 cuts (~1 hr saved)</td></tr>
-        <tr><td>Fitting part numbers</td><td class="old">3 (F3 / F4 / F5)</td><td class="new">1 (F5 only)</td><td>no sorting on playa</td></tr>
-        <tr><td>Fitting cost</td><td class="old">$393.80</td><td class="new">$201.30</td><td>−$192.50</td></tr>
-        <tr><td>Steel scrapped</td><td class="old">56 ft</td><td class="new">4 ft</td><td>offcuts become socket plugs</td></tr>
-      </tbody>
-    </table>
-    </div>
-
-    <div class="callout ok"><b>More shade, fewer cuts, cheaper, one part number.</b> The 40-ft frame is
-    better on every axis than the 36-ft one. It also lands on a stock <b>30 × 40 tarp</b> instead of
-    needing an odd size.</div>
-  </div>
-</section>
+<nav class="toc">
+  <a href="#frame">1 · Frame</a>
+  <a href="#anchor">2 · Anchoring</a>
+  <a href="#tarps">3 · Roof tarps + bungees</a>
+  <a href="#wing">4 · East wing</a>
+  <a href="#shop">5 · Shopping list</a>
+  <a href="#cost">6 · Cost</a>
+  <a href="#build">7 · Build sequence</a>
+  <a href="#field">8 · Field manual</a>
+  <a href="#cal">9 · Calendar</a>
+  <a href="#open">10 · Still open</a>
+</nav>
 
 <!-- ================= FRAME ================= -->
-<section>
-  <h2>1 · Frame plan <span class="tag">5 × 4 node grid · 20 identical fittings</span></h2>
+<section id="frame">
+  <h2>1 · Frame plan <span class="tag">5 × 4 node grid · 20 identical fittings · 0 cuts</span></h2>
   <div class="card">
-    <svg viewBox="0 0 700 590" width="100%" role="img" aria-label="Top-down frame plan of the 40 by 30 foot shade structure showing a 5 by 4 grid of 20 nodes">
+    <p>A 10-ft stick of EMT gives you 10-ft bays. <b>40 × 30 is four bays by three</b>, which means every
+    single pole in this structure — roof and vertical alike — leaves the bundle at 10 ft and goes straight
+    into a fitting. No scoring tool, no saw, no deburring, no offcuts, no 8-ft-versus-10-ft sorting in a
+    dusty box. The trade is that the ceiling sits at <b>10 ft</b> instead of the more common 8 ft.</p>
+
+    <svg viewBox="0 0 700 600" width="100%" role="img" aria-label="Top-down frame plan of the 40 by 30 foot shade structure: a 5 by 4 grid of 20 nodes forming 12 ten-by-ten-foot tarp bays">
+
+      <!-- 12 tarp panels drawn at finished size (~9'6") inside each 10' bay -->
+      <g fill="#D3DEE6" stroke="#8CA0B0" stroke-width="1" opacity="0.65">
+        <rect x="103" y="83" width="114" height="114"/><rect x="223" y="83" width="114" height="114"/>
+        <rect x="343" y="83" width="114" height="114"/><rect x="463" y="83" width="114" height="114"/>
+        <rect x="103" y="203" width="114" height="114"/><rect x="223" y="203" width="114" height="114"/>
+        <rect x="343" y="203" width="114" height="114"/><rect x="463" y="203" width="114" height="114"/>
+        <rect x="103" y="323" width="114" height="114"/><rect x="223" y="323" width="114" height="114"/>
+        <rect x="343" y="323" width="114" height="114"/><rect x="463" y="323" width="114" height="114"/>
+      </g>
 
       <!-- ghost tents -->
-      <g fill="#D8CFBA" stroke="#B4A987" stroke-width="1" stroke-dasharray="5 4" opacity="0.7">
+      <g fill="#D8CFBA" stroke="#B4A987" stroke-width="1" stroke-dasharray="5 4" opacity="0.5">
         <rect x="128" y="108" width="82" height="82" rx="9"/>
         <rect x="250" y="108" width="82" height="82" rx="9"/>
         <rect x="372" y="100" width="120" height="100" rx="11"/>
         <rect x="128" y="230" width="82" height="82" rx="9"/>
         <rect x="248" y="222" width="100" height="100" rx="11"/>
         <rect x="376" y="222" width="120" height="120" rx="11"/>
-      </g>
-      <g font-size="10.5" fill="#8d8265" text-anchor="middle">
-        <text x="169" y="153">8×8</text><text x="291" y="153">8×8</text><text x="432" y="155">10×8</text>
-        <text x="169" y="275">8×8</text><text x="298" y="275">8×8</text><text x="436" y="287">10×10</text>
       </g>
 
       <!-- ===== grid: x = 100 + ft*12 ; y = 80 + ft*12 ===== -->
@@ -249,36 +276,19 @@ footer a{font-family:var(--mono);font-size:12px}
         <line x1="580" y1="80" x2="580" y2="440"/>
       </g>
 
-      <!-- open-socket plug stubs (18) -->
-      <g stroke="#E9540D" stroke-width="6" stroke-linecap="round" opacity="0.95">
-        <!-- corners: 2 open each -->
-        <line x1="100" y1="80"  x2="76"  y2="80"/><line x1="100" y1="80"  x2="100" y2="56"/>
-        <line x1="580" y1="80"  x2="604" y2="80"/><line x1="580" y1="80"  x2="580" y2="56"/>
-        <line x1="100" y1="440" x2="76"  y2="440"/><line x1="100" y1="440" x2="100" y2="464"/>
-        <line x1="580" y1="440" x2="604" y2="440"/><line x1="580" y1="440" x2="580" y2="464"/>
-        <!-- top edge x3 -->
-        <line x1="220" y1="80" x2="220" y2="56"/><line x1="340" y1="80" x2="340" y2="56"/><line x1="460" y1="80" x2="460" y2="56"/>
-        <!-- bottom edge x3 -->
-        <line x1="220" y1="440" x2="220" y2="464"/><line x1="340" y1="440" x2="340" y2="464"/><line x1="460" y1="440" x2="460" y2="464"/>
-        <!-- left edge x2 -->
-        <line x1="100" y1="200" x2="76" y2="200"/><line x1="100" y1="320" x2="76" y2="320"/>
-        <!-- right edge x2 -->
-        <line x1="580" y1="200" x2="604" y2="200"/><line x1="580" y1="320" x2="604" y2="320"/>
-      </g>
-
-      <!-- nodes — ALL 20 IDENTICAL -->
+      <!-- nodes — ALL 20 IDENTICAL, each with a 10 ft leg under it -->
       <g fill="#F6F2E7" stroke="#22262B" stroke-width="2.5">
         <circle cx="100" cy="80" r="9"/><circle cx="220" cy="80" r="9"/><circle cx="340" cy="80" r="9"/><circle cx="460" cy="80" r="9"/><circle cx="580" cy="80" r="9"/>
         <circle cx="100" cy="200" r="9"/><circle cx="220" cy="200" r="9"/><circle cx="340" cy="200" r="9"/><circle cx="460" cy="200" r="9"/><circle cx="580" cy="200" r="9"/>
         <circle cx="100" cy="320" r="9"/><circle cx="220" cy="320" r="9"/><circle cx="340" cy="320" r="9"/><circle cx="460" cy="320" r="9"/><circle cx="580" cy="320" r="9"/>
         <circle cx="100" cy="440" r="9"/><circle cx="220" cy="440" r="9"/><circle cx="340" cy="440" r="9"/><circle cx="460" cy="440" r="9"/><circle cx="580" cy="440" r="9"/>
       </g>
-      <!-- centre dot = leg socket, present on all 20 -->
-      <g fill="#44586B">
-        <circle cx="100" cy="80" r="3.2"/><circle cx="220" cy="80" r="3.2"/><circle cx="340" cy="80" r="3.2"/><circle cx="460" cy="80" r="3.2"/><circle cx="580" cy="80" r="3.2"/>
-        <circle cx="100" cy="200" r="3.2"/><circle cx="220" cy="200" r="3.2"/><circle cx="340" cy="200" r="3.2"/><circle cx="460" cy="200" r="3.2"/><circle cx="580" cy="200" r="3.2"/>
-        <circle cx="100" cy="320" r="3.2"/><circle cx="220" cy="320" r="3.2"/><circle cx="340" cy="320" r="3.2"/><circle cx="460" cy="320" r="3.2"/><circle cx="580" cy="320" r="3.2"/>
-        <circle cx="100" cy="440" r="3.2"/><circle cx="220" cy="440" r="3.2"/><circle cx="340" cy="440" r="3.2"/><circle cx="460" cy="440" r="3.2"/><circle cx="580" cy="440" r="3.2"/>
+      <!-- centre dot = leg + footer + lag screw + strap, present on all 20 -->
+      <g fill="#E9540D">
+        <circle cx="100" cy="80" r="3.4"/><circle cx="220" cy="80" r="3.4"/><circle cx="340" cy="80" r="3.4"/><circle cx="460" cy="80" r="3.4"/><circle cx="580" cy="80" r="3.4"/>
+        <circle cx="100" cy="200" r="3.4"/><circle cx="220" cy="200" r="3.4"/><circle cx="340" cy="200" r="3.4"/><circle cx="460" cy="200" r="3.4"/><circle cx="580" cy="200" r="3.4"/>
+        <circle cx="100" cy="320" r="3.4"/><circle cx="220" cy="320" r="3.4"/><circle cx="340" cy="320" r="3.4"/><circle cx="460" cy="320" r="3.4"/><circle cx="580" cy="320" r="3.4"/>
+        <circle cx="100" cy="440" r="3.4"/><circle cx="220" cy="440" r="3.4"/><circle cx="340" cy="440" r="3.4"/><circle cx="460" cy="440" r="3.4"/><circle cx="580" cy="440" r="3.4"/>
       </g>
 
       <!-- dimensions -->
@@ -293,347 +303,677 @@ footer a{font-family:var(--mono);font-size:12px}
       </g>
       <g font-size="12.5" fill="#22262B" text-anchor="middle">
         <text x="160" y="532">10'</text><text x="280" y="532">10'</text><text x="400" y="532">10'</text><text x="520" y="532">10'</text>
-        <text x="340" y="556" font-weight="600">40'-0" — 4 bays, 0 cuts</text>
+        <text x="340" y="556" font-weight="600">40'-0" — 4 bays</text>
       </g>
       <g font-size="12.5" fill="#22262B">
         <text x="660" y="145">10'</text><text x="660" y="265">10'</text><text x="660" y="385">10'</text>
-        <text x="692" y="260" transform="rotate(90 692 260)" text-anchor="middle" font-weight="600">30'-0" — 3 bays, 0 cuts</text>
+        <text x="692" y="260" transform="rotate(90 692 260)" text-anchor="middle" font-weight="600">30'-0" — 3 bays</text>
       </g>
 
-      <!-- wind arrow -->
-      <g stroke="#E9540D" stroke-width="3" fill="none">
-        <line x1="34" y1="548" x2="66" y2="516"/>
-        <path d="M66 516 l-11 2 M66 516 l-2 11"/>
-      </g>
-      <text x="20" y="572" font-size="11" fill="#E9540D">WIND (SW)</text>
-      <text x="100" y="34" font-size="11.5" fill="#8d8265">Perimeter bays stay open — mesh walls optional, see §6</text>
+      <!-- 5-way alignment reminder -->
+      <text x="20" y="584" font-size="11.5" fill="#E9540D" font-weight="600">ALL 20 FIVE-WAYS ROTATED IDENTICALLY — see the alignment rule below</text>
+
+      <text x="20" y="26" font-size="11" fill="#8d8265">Every node: 5-way overhead · 10 ft leg · footer · lag screw · vertical ratchet strap</text>
+      <text x="20" y="44" font-size="11" fill="#8d8265">Shaded = one 10×10 tarp per bay (12) · dashed = tents, shift ±1 ft to clear interior legs</text>
     </svg>
 
     <div class="legend">
       <span><span class="sw"></span>10' pole, 40' direction × <b>16</b></span>
       <span><span class="sw gold"></span>10' pole, 30' direction × <b>15</b></span>
       <span><span class="dot" style="background:#F6F2E7;border:2.5px solid #22262B"></span>flat 5-way F5-1 × <b>20</b> (all identical)</span>
-      <span style="color:#E9540D">▬ 2' offcut plug × <b>18</b></span>
+      <span><span class="dot" style="background:#E9540D"></span>10' leg + footer + anchor × <b>20</b></span>
+      <span><span class="dot" style="background:#D3DEE6;border:1px solid #8CA0B0;border-radius:0"></span>10×10 tarp × <b>12</b></span>
     </div>
 
-    <div class="callout steel" style="margin-top:16px">
-      <b>One fitting, twenty times.</b> Corners, edges and interior nodes are all the same flat 5-way
-      (F5-1). Nothing to sort, nothing to mix up in the dark, and a spare fits anywhere. The cost is
-      that perimeter nodes have sockets pointing out into nothing — <b>18 of them</b> (2 at each of the
-      4 corners, 1 at each of the 10 edge nodes). Those get capped with the 2-ft leg offcuts, which is
-      why the offcuts ride to the playa instead of the recycler.
+    <div class="tblwrap">
+    <table style="margin-top:16px">
+      <thead><tr><th>Pole schedule — every piece is a full 10 ft</th><th class="qty">Qty</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="item"><b>Roof poles, 40-ft direction</b></td><td class="qty">16</td><td class="note">4 rows × 4 bays</td></tr>
+        <tr><td class="item"><b>Roof poles, 30-ft direction</b></td><td class="qty">15</td><td class="note">5 columns × 3 bays</td></tr>
+        <tr><td class="item"><b>Vertical legs</b></td><td class="qty">20</td><td class="note">One under every node, interior nodes included</td></tr>
+        <tr><td class="item"><b>Spares</b></td><td class="qty">3</td><td class="note">Bends and field mods — EMT <em>will</em> bend in a blow</td></tr>
+        <tr class="subtotal"><td>Total sticks of 1" × 10' EMT</td><td class="qty">54</td><td>≈ 362 lb of steel</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="rule">
+      <div class="rh">Rule — do not skip this one</div>
+      <p><b>All 20 five-ways must be rotated the same way.</b> Look closely at an F5-1: it is open on one
+      axis and closed on the other. Roof poles entering the open sides touch each other; poles on the
+      closed axis end up more than 1¼" apart. Mix the orientations and the grid comes out uneven, which
+      you will discover when the tarps won't stretch square. The guide's memory trick: line them up so
+      you can <b>see the Man through the 5-way</b>. Pick the axis before you assemble the first cube,
+      then never think about it again.</p>
+    </div>
+
+    <div class="callout steel">
+      <b>No couplers in this build.</b> The reference guide specs couplers because it assumes a 10 × 12 ft
+      grid, where the 12-ft side is a 10-ft pole plus a 2-ft pole joined mid-span. We are on a pure 10-ft
+      grid, so there is nothing to join. If someone hands you a bag of couplers, they are not for this
+      structure.
     </div>
 
     <div class="callout">
-      <b>Legs:</b> 20 poles cut to 8'-0", one under every node — including the 6 interior nodes.
-      Interior legs are <b>mandatory</b> at this span; plan tents to shift ±1 ft to clear them (the
-      ghost tents above are drawn around them). If your tallest tent exceeds 7'6", cut legs at 8'6"
-      instead — same stick, smaller offcut, but then you only get 18" plugs.
+      <b>1" is the floor, not a preference.</b> Do not substitute 3/4" EMT — it is far too whippy for
+      playa conditions and many cheap fitting kits are secretly sized for it. Everything here is 1"
+      (1.163" OD) and the F5-1's 1¼" inside diameter is matched to it.
+      <br><br>
+      <b>The stronger alternative, for the record:</b> 1-3/8" chain-link fence top rail is dramatically
+      stiffer than EMT — EMT is literally designed to be bent, and it will bend in a serious blow. Top
+      rail now runs about $24 a stick against EMT's ~$23, so the old price argument for EMT is gone.
+      <b>Recommendation: stay on 1" EMT for 2026.</b> Switching means re-specifying all 20 fittings and
+      all 20 footers to 1-3/8" four weeks out from gate, and one fitting type at one verified price is
+      worth more right now than the stiffness upgrade. Revisit it next year before the frame gets
+      reordered.
+    </div>
+  </div>
+</section>
+
+<!-- ================= ANCHORING ================= -->
+<section id="anchor">
+  <h2>2 · Anchoring + ratchet straps <span class="tag ok">Decided — lag screws + climbing hangers</span></h2>
+  <div class="card">
+    <p>A 40 × 30 solid roof is a <b>1,200 sq ft sail</b>. One tarp catching a 50 mph gust vertically
+    generates roughly <b>770 lb of force</b>, and BRC whiteouts hit 50 mph with no warning and can run
+    eight to twelve hours. Anchoring is the entire difference between a structure and a projectile.</p>
+
+    <div class="rule">
+      <div class="rh">The load path — memorise it</div>
+      <p><b>Ratchet strap over the 5-way → down the leg → S-hook into a climbing hanger → held by a
+      3/8" × 14" lag screw → driven through the footer into the playa.</b> That tension is the only thing
+      holding this structure to the ground. <b>The eyebolts hold nothing.</b> They are hand-tight
+      positioners that keep poles from falling out while you build, and that is all they are. Footers keep
+      the leg from punching into the playa and from sliding sideways; they do not hold anything down.</p>
     </div>
 
-    <!-- cut list -->
-    <h3 class="sub">Cut list — 54 sticks of 1" × 10' EMT</h3>
-    <svg viewBox="0 0 700 152" width="100%" role="img" aria-label="Cut list bar chart: 31 uncut roof poles, 20 legs cut to 8 feet, 3 spares">
-      <g font-size="12" fill="#22262B">
-        <rect x="152" y="10" width="440" height="22" fill="#44586B"/>
-        <text x="8" y="26">31 × keep 10'-0"</text>
-        <text x="600" y="26" fill="#5b6067">roof — no cuts</text>
+    <svg viewBox="0 0 700 400" width="100%" role="img" aria-label="Section detail of one vertical pole: five-way fitting at the top with a ratchet strap looping over it and running down to a climbing hanger held by a lag screw through the footer">
+      <!-- ground -->
+      <rect x="0" y="330" width="700" height="70" fill="#DDD3BC"/>
+      <line x1="0" y1="330" x2="700" y2="330" stroke="#B4A987" stroke-width="2"/>
+      <g font-size="10.5" fill="#8d8265">
+        <text x="236" y="346">PLAYA — the top 6–8" is</text>
+        <text x="236" y="360">flaky dust. Nothing holds</text>
+        <text x="236" y="374">unless you get 12" deep.</text>
+      </g>
 
-        <rect x="152" y="48" width="352" height="22" fill="#22262B"/>
-        <rect x="504" y="48" width="88" height="22" fill="#E9540D"/>
-        <text x="8" y="64">20 × cut to 8'-0"</text>
-        <text x="600" y="64" fill="#5b6067">legs</text>
+      <!-- roof beams -->
+      <g stroke="#44586B" stroke-width="7" stroke-linecap="round">
+        <line x1="120" y1="70" x2="580" y2="70"/>
+      </g>
+      <!-- verticals -->
+      <g stroke="#44586B" stroke-width="7" stroke-linecap="round">
+        <line x1="200" y1="70" x2="200" y2="330"/>
+        <line x1="500" y1="70" x2="500" y2="330"/>
+      </g>
 
-        <rect x="152" y="86" width="88" height="22" fill="#E9540D" opacity="0.85"/>
-        <text x="8" y="102">20 × 2' offcut</text>
-        <text x="256" y="102" fill="#5b6067">→ 18 plug the open perimeter sockets, 2 spare</text>
+      <!-- 5-ways -->
+      <g fill="#F6F2E7" stroke="#22262B" stroke-width="2.5">
+        <rect x="186" y="56" width="28" height="28" rx="3"/>
+        <rect x="486" y="56" width="28" height="28" rx="3"/>
+      </g>
 
-        <rect x="152" y="124" width="440" height="22" fill="none" stroke="#8CA0B0" stroke-dasharray="5 4"/>
-        <text x="8" y="140">3 × spare 10'</text>
-        <text x="600" y="140" fill="#5b6067">breakage / mods</text>
+      <!-- footers -->
+      <g fill="#8CA0B0" stroke="#22262B" stroke-width="2">
+        <rect x="176" y="322" width="48" height="10" rx="2"/>
+        <rect x="476" y="322" width="48" height="10" rx="2"/>
+      </g>
+
+      <!-- climbing hanger stacked under the lag head, on the footer's outer hole -->
+      <g fill="#8CA0B0" stroke="#22262B" stroke-width="1.5">
+        <rect x="172" y="310" width="17" height="13" rx="2"/>
+        <rect x="472" y="310" width="17" height="13" rx="2"/>
+      </g>
+      <g fill="#F6F2E7" stroke="#22262B" stroke-width="1.2">
+        <circle cx="180" cy="316" r="3.2"/>
+        <circle cx="480" cy="316" r="3.2"/>
+      </g>
+
+      <!-- ONE lag screw per pole: through the hanger, through the footer, into the playa -->
+      <g stroke="#22262B" stroke-width="4">
+        <line x1="180" y1="308" x2="180" y2="388"/>
+        <line x1="480" y1="308" x2="480" y2="388"/>
+      </g>
+
+      <!-- ratchet strap left: over the 5-way, twisted round the pole, down to the hanger -->
+      <g stroke="#E9540D" stroke-width="3" fill="none">
+        <path d="M200 56 C 168 56, 156 78, 158 96 L 166 148 C 174 174, 184 180, 196 192
+                 C 210 206, 214 218, 205 234 C 197 250, 186 256, 181 272 L 180 308"/>
+      </g>
+      <rect x="168" y="276" width="25" height="15" rx="2" fill="#E9540D" stroke="#22262B" stroke-width="1.5" transform="rotate(-9 180 283)"/>
+
+      <!-- ratchet strap right: straight run, the twang failure mode -->
+      <g stroke="#E9540D" stroke-width="3" fill="none" opacity="0.4" stroke-dasharray="7 5">
+        <path d="M500 56 C 470 56, 460 80, 462 100 L 478 308"/>
+      </g>
+
+      <!-- callout labels -->
+      <g font-size="11" fill="#22262B">
+        <text x="228" y="52">5-WAY — strap loops OVER it, not through the eyebolt</text>
+        <text x="236" y="196">Twist the strap 1–2×</text>
+        <text x="236" y="210">around the pole: this</text>
+        <text x="236" y="224">kills the twang in wind.</text>
+        <text x="236" y="238">Don't over-twist, or you</text>
+        <text x="236" y="252">can't tension it.</text>
+        <text x="236" y="300">straight run = twangs all night ⟶</text>
+        <text x="60" y="366" fill="#E9540D">3/8" × 14"</text>
+        <text x="60" y="380" fill="#E9540D">LAG SCREW</text>
+        <text x="504" y="352">FOOTER + HANGER share</text>
+        <text x="504" y="366">ONE lag screw. The other</text>
+        <text x="504" y="380">two holes do nothing.</text>
+      </g>
+      <text x="120" y="30" font-size="12.5" font-weight="600" fill="#22262B">One vertical pole — repeat exactly this, 20 times</text>
+    </svg>
+
+    <h3 class="sub">The anchor kit, per pole</h3>
+    <div class="tblwrap">
+    <table>
+      <thead><tr><th>Component</th><th class="qty">Per pole</th><th>Spec</th></tr></thead>
+      <tbody>
+        <tr><td class="item"><b>Footer</b></td><td class="qty">1</td><td class="note">1" foot pad (FP-1), galvanized. Sits under the leg. Keeps it from sinking and from sliding.</td></tr>
+        <tr><td class="item"><b>Lag screw</b></td><td class="qty">1</td><td class="note"><b>3/8" dia × 14" long.</b> The top 6–8" of playa is dust — you need 12"+ of bite. One per footer; extra screws add nothing.</td></tr>
+        <tr><td class="item"><b>Climbing hanger</b></td><td class="qty">1</td><td class="note">10 mm hole — exactly right for a 3/8" (9.52 mm) screw. Goes on <em>under</em> the lag head, gives the S-hook something to grab.</td></tr>
+        <tr><td class="item"><b>Vertical ratchet strap</b></td><td class="qty">1</td><td class="note">15 ft × 1", ~1,500 lb break strength, <b>S-hooks both ends.</b> Loops over the 5-way, hooks the hanger, twisted 1–2× around the leg.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <b>Driver spec.</b> 9/16", <b>6-point</b>, deep impact socket. Do not buy 12-point — it rounds the
+      lag heads. A cheap impact driver will eventually sink a screw; a 1/2"-drive impact wrench will save
+      hours across 34 of them. Bring <b>spare batteries</b>, and ideally a second wrench.
+    </div>
+
+    <h3 class="sub">Diagonal ratchet straps — mandatory here</h3>
+    <p>With a bare flat roof and nothing on the sides, the 20 vertical straps would be enough. <b>We have a
+    side panel</b> (§4), and side panels catch wind and dump that horizontal load into the frame. In heavy
+    wind the failure mode is poles popping straight out of the 5-way headers, so the fix is compressive:
+    diagonals that pull the whole structure in on itself.</p>
+    <ul class="tight">
+      <li><b>Run them internally</b>, inside the footprint. External diagonals are a trip hazard and sit
+      where people walk; internal ones also brace in the direction the frame actually wants to fail.</li>
+      <li><b>Starting spec: 8 straps.</b> One diagonal across each of the four corner roof bays, plus four
+      in the vertical planes of the two faces the wind hits (SW) and the wing face. Adjust on site once
+      you see which sides the RVs already shelter.</li>
+      <li>Same strap as the verticals — 15 ft, 1", S-hooks. Buy them together.</li>
+    </ul>
+
+    <div class="callout">Lag screws sit flush and pull cleanly on teardown — nothing protruding, no MOOP.
+    But the <b>climbing hangers and strap runs are still at ankle height.</b> Flag every one of them and
+    light the perimeter. See Burning Man's
+    <a href="https://burningman.org/black-rock-city/preparation/camping-tips/securing-your-structure/" target="_blank" rel="noopener">Securing Your Structure</a>.</div>
+  </div>
+</section>
+
+<!-- ================= TARPS ================= -->
+<section id="tarps">
+  <h2>3 · Roof tarps + bungees <span class="tag">12 × 10'×10' · one size only</span></h2>
+  <div class="card">
+    <p>The roof is <b>twelve 10 × 10 solid tarps</b>, one per bay, all identical. This is the single
+    biggest quality-of-life decision on the sheet. One size means any tarp fits any bay, a torn one gets
+    swapped in two minutes, replacements are the cheapest and most available tarp on the market, and
+    nobody is ever digging through a dusty box looking for the one odd-sized panel. That search is exactly
+    what turns a two-hour job into a six-hour one.</p>
+
+    <div class="callout ok">
+      <b>The 4–6" shortfall is a feature, not a defect.</b> A tarp sold as 10 × 10 is a <em>cut</em> size;
+      the hem is folded and sewn, so it arrives at roughly <b>9'6" × 9'6"</b>. That is exactly what you
+      want on a 10-ft grid — the gap is what the bungees stretch across, and the tension is what keeps the
+      panel from flapping itself to death.
+    </div>
+
+    <h3 class="sub">Solid on top, mesh on the sides — never the reverse</h3>
+    <p><b>Roof tarps must be solid.</b> 100% solid casts materially better shade than 80% mesh, and there
+    is no ventilation argument up there — playa wind is horizontal, it does not need to pass through the
+    roof. <b>Anything not horizontal must be mesh.</b> A solid tarp used as a wall is a sail, and it will
+    put destructive load into the frame. This is why the east wing is aluminet (§4) and not a poly tarp.</p>
+
+    <h3 class="sub">Colour</h3>
+    <p>Spec is <b>silver or light</b>. Worth knowing before you click buy: the reference guide's field
+    testing found <b>white actually reflects more and measures cooler than silver</b>, despite silver's
+    reputation. They cost the same. Either way it matters less than people think — the tarp is 10 ft over
+    your head, so even if it heats up you are fine. If you want colour instead of boring, that is a real
+    option; go light, not dark.</p>
+
+    <h3 class="sub">How to tell a good tarp from a bad one</h3>
+    <p>The first thing to fail on playa is always a grommet ripping out, usually a corner. Buy for that:</p>
+    <ul class="tight">
+      <li><b>Folded, sewn hem</b> with a <b>rope reinforcement woven through it</b> — this is the one that
+      matters. When a grommet does tear, the rope keeps the whole edge from unzipping.</li>
+      <li><b>Reinforced corner patches.</b></li>
+      <li><b>12 mil</b> thickness, <b>~6 oz per square yard</b>, UV-treated and mildew-resistant.</li>
+      <li>Grommets roughly every 18". Heat-sealed seams.</li>
+    </ul>
+
+    <h3 class="sub">Ball bungees — 6" and 9", roughly half and half</h3>
+    <p>Tarps attach to poles with ball bungees. Spacing between a tarp's grommet and the pole it reaches
+    varies bay to bay — the frame is never perfectly square and the tarps are never exactly the same. So
+    <b>buy both lengths in roughly equal quantity</b> and sort on site.</p>
+
+    <div class="rule">
+      <div class="rh">Rule — one length per edge</div>
+      <p><b>Every bungee along a single tarp edge must be the same length.</b> Put one 9" in a line of 6"
+      and it sits slack, falls out, and becomes MOOP. Then its neighbours take the extra load, slacken in
+      turn, and the edge unzips itself. Bag the bungees by length, and commit to one length per edge as
+      you go. Also: <b>every grommet gets a bungee.</b> Skipping half of them concentrates the entire wind
+      load on the ones you did use, and they tear out in sequence.</p>
+    </div>
+
+    <div class="tblwrap">
+    <table style="margin-top:14px">
+      <thead><tr><th>Bungee count</th><th class="qty">Grommets</th><th class="qty">Bungees</th></tr></thead>
+      <tbody>
+        <tr><td class="item"><b>12 roof tarps</b><small>~28 grommets each at 18" spacing around a 40-ft perimeter</small></td><td class="qty">~336</td><td class="qty">336</td></tr>
+        <tr><td class="item"><b>East wing, 14 × 20 aluminet</b><small>~68 ft of perimeter, top edge to the roof and bottom edge to ground anchors</small></td><td class="qty">~45</td><td class="qty">45</td></tr>
+        <tr><td class="item"><b>Spares</b><small>They blow away, they perish in UV, and they cost pennies</small></td><td class="qty">—</td><td class="qty">~19</td></tr>
+        <tr class="subtotal"><td>Buy: 200 × 6" + 200 × 9"</td><td class="qty"></td><td class="qty">400</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EAST WING ================= -->
+<section id="wing">
+  <h2>4 · East wing <span class="tag ok">Already owned — 14 × 20 silver aluminet</span></h2>
+  <div class="card">
+    <p>The east-facing wing is the <b>14' × 20' silver aluminet panel purchased last year</b>. Nothing to
+    order, nothing to quote, no lead time — it is in the pile. That removes what used to be the single
+    most schedule-critical line on this sheet.</p>
+
+    <div class="callout ok">
+      <b>Aluminet is the right material for this by the guide's own rule.</b> Side panels must be mesh, and
+      knitted aluminet is mesh — wind passes through instead of loading up the frame. Never hang a solid
+      poly tarp as a wall.
+    </div>
+
+    <p>The 20-ft dimension is exactly <b>two bays</b>, so the top edge hangs off two of the perimeter roof
+    poles with no improvising. The 14 ft is the slope length running down and out to the ground.</p>
+
+    <svg viewBox="0 0 700 300" width="100%" role="img" aria-label="Section through the east wing: aluminet panel sloping from the ten foot roof edge down and out to ground anchors">
+      <rect x="0" y="240" width="700" height="60" fill="#DDD3BC"/>
+      <line x1="0" y1="240" x2="700" y2="240" stroke="#B4A987" stroke-width="2"/>
+
+      <!-- roof + leg -->
+      <g stroke="#44586B" stroke-width="7" stroke-linecap="round">
+        <line x1="60" y1="60" x2="300" y2="60"/>
+        <line x1="300" y1="60" x2="300" y2="240"/>
+      </g>
+      <rect x="286" y="46" width="28" height="28" rx="3" fill="#F6F2E7" stroke="#22262B" stroke-width="2.5"/>
+      <rect x="276" y="232" width="48" height="10" rx="2" fill="#8CA0B0" stroke="#22262B" stroke-width="2"/>
+
+      <!-- roof tarp stub -->
+      <line x1="60" y1="52" x2="300" y2="52" stroke="#D3DEE6" stroke-width="9"/>
+      <text x="90" y="42" font-size="11" fill="#6f8494">solid roof tarps →</text>
+
+      <!-- aluminet panel sloping down -->
+      <g>
+        <line x1="300" y1="56" x2="560" y2="238" stroke="#8CA0B0" stroke-width="8" stroke-linecap="round"/>
+        <line x1="300" y1="56" x2="560" y2="238" stroke="#F6F2E7" stroke-width="3" stroke-dasharray="3 5"/>
+      </g>
+      <text x="340" y="78" font-size="12" fill="#44586B" font-weight="600" transform="rotate(35 340 78)">14' ALUMINET — MESH, SLOPED</text>
+
+      <!-- ground anchors along the bottom edge -->
+      <g>
+        <g fill="#8CA0B0" stroke="#22262B" stroke-width="1.5">
+          <rect x="524" y="232" width="12" height="12"/><rect x="556" y="232" width="12" height="12"/>
+          <rect x="588" y="232" width="12" height="12"/><rect x="620" y="232" width="12" height="12"/>
+        </g>
+        <g stroke="#22262B" stroke-width="3.5">
+          <line x1="530" y1="238" x2="530" y2="284"/><line x1="562" y1="238" x2="562" y2="284"/>
+          <line x1="594" y1="238" x2="594" y2="284"/><line x1="626" y1="238" x2="626" y2="284"/>
+        </g>
+      </g>
+      <text x="56" y="270" font-size="10.5" fill="#22262B">lag screw + climbing hanger under</text>
+      <text x="56" y="284" font-size="10.5" fill="#22262B">EVERY grommet landing point</text>
+      <g stroke="#22262B" stroke-width="1.2" fill="none">
+        <line x1="272" y1="277" x2="514" y2="277"/>
+        <path d="M514 277 l-7 -3 M514 277 l-7 3"/>
+      </g>
+
+      <!-- wind -->
+      <g stroke="#E9540D" stroke-width="3" fill="none">
+        <line x1="690" y1="38" x2="614" y2="38"/>
+        <path d="M614 38 l9 -4 M614 38 l9 4"/>
+      </g>
+      <text x="424" y="80" font-size="11" fill="#E9540D">TAUT — the wind glides up and over</text>
+      <text x="424" y="98" font-size="11" fill="#E9540D">SLACK — it bellies into a sail</text>
+
+      <g font-size="11.5" fill="#22262B">
+        <text x="316" y="150">10'-0"</text>
+        <text x="316" y="164">clear</text>
       </g>
     </svg>
-    <p class="note" style="margin-top:8px">
-      <b>20 cuts total, all identical, all legs</b> — set one stop block and run them production-style.
-      Roughly 45 min for two people with tube cutters, ~15 min with a cordless angle grinder and a
-      cut-off wheel. File or steel-wool every cut end. <b>Scrap leaving the playa: 4 ft</b> (the two
-      spare plugs). <b>Do not substitute 3/4" EMT</b> — it's too whippy at a 10 ft span, and many cheap
-      fitting kits are secretly sized for 3/4". Everything here is 1" (1.163" OD).
-    </p>
-  </div>
-</section>
 
-<!-- ================= OPEN DECISION 1: ANCHORING ================= -->
-<section>
-  <h2>2 · Anchoring <span class="tag open">Decision open — pick before ordering</span></h2>
-  <div class="card">
-    <p>A 40×30 solid roof is a <b>1,200 sq ft sail</b>. Anchoring is the difference between a structure
-    and a kite, and the two candidate systems buy different things. <b>This is not yet decided — both are
-    costed in §5.</b></p>
+    <h3 class="sub">Mounting</h3>
+    <ul class="tight">
+      <li><b>Slope it, always.</b> Never hang a side panel vertically. A slope gives the wind a chance to
+      go over the top; a vertical face gives it something to push against.</li>
+      <li><b>Pull it drum-tight.</b> Position the ground anchors so the panel is genuinely taut. Taut, the
+      wind glides up and over. Even slightly slack, it bellies into a sail shape and starts putting real
+      load into the frame.</li>
+      <li><b>A lag screw + climbing hanger outside the landing point of every grommet</b> along the bottom
+      edge — about 14 anchors across the 20-ft edge at 18" spacing. Not every other one. Every one.</li>
+      <li><b>Every grommet gets a bungee</b>, top edge and bottom. Half-connecting concentrates the whole
+      wind load on a handful of grommets, which rip in sequence until the panel is gone.</li>
+      <li>The wing is why the <b>diagonal ratchet straps in §2 are not optional.</b></li>
+    </ul>
 
-    <div class="decision">
-      <div class="dh">Unresolved · needs Bulat's call</div>
-      <h4>Candy-cane rebar vs. lag bolts + climbing hangers</h4>
-      <div class="opts">
-        <div class="opt">
-          <h5>Option A — candy-cane rebar</h5>
-          <p><b>14 anchors</b> — one per perimeter node.</p>
-          <ul>
-            <li>3/8" × 2 ft J-hook stakes, fully buried, angled away from the structure, ~2 ft out.</li>
-            <li>Ratchet strap from the fitting body (never the eyebolts) down to the cane.</li>
-            <li>Cheapest, most familiar, no power tools.</li>
-            <li><b>Cost:</b> trip hazard on all 14 — every one must be capped and lit.</li>
-            <li>Interior legs get a straight rebar pin lashed on, not an anchor.</li>
-          </ul>
-        </div>
-        <div class="opt">
-          <h5>Option B — lag bolts + climbing hangers</h5>
-          <p><b>20 anchors</b> — one per leg, interior legs included.</p>
-          <ul>
-            <li><b>3/8" × 14"</b> lag bolts. <b>NOT 1/2" × 16"</b> — the climbing hanger hole is 10 mm and a 1/2" bolt physically will not pass through it.</li>
-            <li>Driver socket: <b>9/16", 6-point, deep impact.</b> Bring a real impact wrench and spare batteries.</li>
-            <li>Sits flush — no trip hazard, clean removal, no MOOP.</li>
-            <li><b>Critical limit:</b> lag bolts resist <em>lateral sliding</em> only. They give you almost no vertical hold-down — so each pole still needs its own <b>vertical ratchet strap</b> for uplift.</li>
-          </ul>
-        </div>
-      </div>
-      <p class="note" style="margin-top:12px"><b>Open sub-question either way:</b> diagonal ratchet straps
-      across the roof bays for racking stiffness. Not yet specced, not yet costed.</p>
-    </div>
-
-    <div class="callout">Every stake capped and lit, every guy strap flagged. Rebar collisions are the
-    #1 injury at the event — see Burning Man's
-    <a href="https://burningman.org/event/preparation/health-safety/rebar/" target="_blank" rel="noopener">rebar safety page</a> and
-    <a href="https://burningman.org/black-rock-city/preparation/camping-tips/securing-your-structure/" target="_blank" rel="noopener">Securing Your Structure</a>.
-    Footplates spread load but <b>do not hold the structure down</b> — an unstaked frame is guaranteed to fly.</div>
-  </div>
-</section>
-
-<!-- ================= ROOF & WING ================= -->
-<section>
-  <h2>3 · Roof + east wing</h2>
-  <div class="card">
-    <h3 class="sub" style="margin-top:0">Main roof — stock 30 × 40 tarp</h3>
-    <p>The 40×30 frame lands on an off-the-shelf <b>30' × 40'</b> tarp, which is the whole point of the
-    dimension change. One honest caveat: poly tarps are sold at <em>cut</em> size and finish about 6"
-    smaller per dimension, so a "30×40" arrives at roughly <b>29'6" × 39'6"</b>. That is ~3" shy on each
-    edge of a true 40×30 frame — the tarp sits just <em>inside</em> the perimeter poles rather than
-    wrapping over them. It bungees down fine and pulls taut; it just won't overhang. If you want a
-    valance or any overhang at all, order the next size up and accept the extra flap.</p>
-
-    <h3 class="sub">East wing — 14 × 20 aluminet</h3>
-    <p>A <b>14' × 20'</b> double-layer aluminet panel angled off the roofline on the east side, for
-    morning shade before the sun clears the roof. 280 sq ft. The 20-ft dimension is exactly
-    <b>2 bays</b>, so it hangs off two perimeter nodes with no improvising.</p>
     <div class="callout open">
-      <b>Two things to confirm on the wing.</b> (1) Which axis faces east isn't specified anywhere in the
-      brief — if the 40-ft side faces east the wing covers half of it; if the 30-ft side does, it covers
-      2 of 3 bays. (2) ShadeClothStore's site lists Aluminet Cool Shade in stock sizes and a custom
-      program, but <b>no catalogue "double-layer" product</b> — that appears to be a custom-fabrication
-      ask. Call it in rather than ordering blind:
-      <a href="https://shadeclothstore.com/product/custom-shade-cloth/" target="_blank" rel="noopener">custom shade cloth</a>,
-      866-727-6658.
-    </div>
-    <div class="callout">
-      <b>Lead time is the real risk here.</b> ShadeClothStore quotes <b>3–4 weeks for Aluminet</b> custom
-      orders. Gate opens <b>Aug 30</b>. Ordering today is already inside that window with no slack — this
-      is the single most time-critical line on the sheet. If the quote comes back at 4 weeks, fall back to
-      a <a href="https://shadeclothstore.com/product-category/shade-cloth/aluminet-shade-cloth/" target="_blank" rel="noopener">stock-size Aluminet Cool Shade panel</a>
-      (ships next day) and adapt the mounting.
+      <b>One thing to confirm:</b> which axis of the frame faces east. If the 40-ft side faces east the
+      20-ft wing covers half of it; if the 30-ft side faces east it covers two of three bays. Both work —
+      but it determines which two perimeter poles the top edge hangs from, and it should be settled before
+      the frame is squared and drilled down, not after.
     </div>
   </div>
 </section>
 
 <!-- ================= SHOPPING ================= -->
-<section>
-  <h2>4 · Shopping list</h2>
+<section id="shop">
+  <h2>5 · Shopping list</h2>
   <div class="card">
-    <h3 class="sub" style="margin-top:0">4a · Ship to home now</h3>
+    <h3 class="sub" style="margin-top:0">5a · Ship to home now</h3>
     <div class="tblwrap">
     <table>
       <thead><tr><th>Item</th><th class="qty">Qty</th><th class="money">Unit</th><th class="money">Line</th><th>Price</th></tr></thead>
       <tbody>
-        <tr><td class="item"><b>Flat roof 5-way fitting, 1" (F5-1)</b> — <a href="https://tarps.com/products/1-flat-roof-5-way-fitting-f5-1" target="_blank" rel="noopener">Tarps.com F5-1</a><small>20 nodes + 2 spare. Galvanized steel, welded, eyebolt fastening, 1¼" inside diameter over 1" EMT. <b>The only fitting in the build.</b></small></td><td class="qty">22</td><td class="money">$9.15</td><td class="money">$201.30</td><td><span class="badge v">verified</span></td></tr>
-        <tr><td class="item"><b>Roof tarp — 30' × 40' white heavy-duty poly</b><small>Finishes ≈29'6"×39'6" — see §3. Sources: <a href="https://a1tarps.com/white-tarp-30x40.html" target="_blank" rel="noopener">A1 Tarps</a> · <a href="https://www.tarpsnow.com/heavy-duty-white-poly-tarps.html" target="_blank" rel="noopener">TarpsNow</a></small></td><td class="qty">1</td><td class="money">$150–230</td><td class="money">$150–230</td><td><span class="badge e">est.</span></td></tr>
-        <tr><td class="item"><b>East wing — 14' × 20' double-layer aluminet</b><small><a href="https://shadeclothstore.com/product/custom-shade-cloth/" target="_blank" rel="noopener">ShadeClothStore custom</a> — 280 sq ft, grommets every 2'. $180 custom minimum applies in aggregate. <b>Needs a phone quote; 3–4 week lead.</b></small></td><td class="qty">1</td><td class="money">—</td><td class="money">$400–700?</td><td><span class="badge q">quote</span></td></tr>
-        <tr><td class="item"><b>Ball bungees, 9", 100-pack</b><small>Roof has ~90 grommets at 18" spacing, wing adds ~35 → ~125 needed. Spares are cheap and they blow away.</small></td><td class="qty">2</td><td class="money">$20–30</td><td class="money">$40–60</td><td><span class="badge e">est.</span></td></tr>
-        <tr><td class="item"><b>Tube cutter (opens past 1.2" OD) + spare wheel</b><small>1" EMT is 1.163" OD — check max capacity, most 1/8–1⅛" cutters only just fit. An angle grinder is 3× faster for 20 cuts.</small></td><td class="qty">1–2</td><td class="money">$25–45</td><td class="money">$25–45</td><td><span class="badge e">est.</span></td></tr>
-        <tr class="subtotal"><td>Ship-ahead subtotal</td><td class="qty"></td><td class="money"></td><td class="money">$816–1,236 + freight</td><td></td></tr>
+        <tr><td class="item"><b>Flat roof 5-way fitting, 1" (F5-1)</b> — <a href="https://tarps.com/products/1-flat-roof-5-way-fitting-f5-1" target="_blank" rel="noopener">Tarps.com F5-1</a><small>20 nodes + 2 spare. Galvanized, welded, eyebolt fastening, 1¼" inside diameter over 1" EMT. The only roof fitting in the build.</small></td><td class="qty">22</td><td class="money">$9.15</td><td class="money">$201.30</td><td><span class="badge v">verified</span></td></tr>
+        <tr><td class="item"><b>Foot pad / footer, 1" (FP-1)</b> — <a href="https://tarps.com/products/1-foot-pad-fp-1" target="_blank" rel="noopener">Tarps.com FP-1</a><small>20 legs + 2 spare. Galvanized 16 ga, 1¼" inside diameter, eyebolt. Takes the lag screw. Order with the 5-ways on one shipment.</small></td><td class="qty">22</td><td class="money">~$7</td><td class="money">~$154</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Roof tarps — 10' × 10' silver, 12 mil heavy duty</b><small>12 bays + 2 spare. Cut 10×10, finishes ≈9'6"×9'6". 6 oz/sq yd, UV, grommets ~18". <a href="https://canopiesandtarps.com/silver-tarp-10x10.html" target="_blank" rel="noopener">Canopies&amp;Tarps 10×10 silver</a> · <a href="https://www.tarpsnow.com/heavy-duty-poly-tarps-silver.html" target="_blank" rel="noopener">TarpsNow</a>. Check for a rope-reinforced hem before ordering.</small></td><td class="qty">14</td><td class="money">$16.59</td><td class="money">$232.26</td><td><span class="badge v">verified</span></td></tr>
+        <tr><td class="item"><b>East wing — 14' × 20' silver aluminet</b><small>Purchased 2025. Inspect for tears and count grommets before packing. Nothing to buy.</small></td><td class="qty">1</td><td class="money">—</td><td class="money">$0</td><td><span class="badge own">owned</span></td></tr>
+        <tr><td class="item"><b>Ball bungees — 6", 100-pack</b><small><a href="https://www.amazon.com/Xpose-Safety-Bungee-Ball-Cords/dp/B07FDKKSMX" target="_blank" rel="noopener">Xpose Safety 6" 100-pk</a> or equivalent. UV-resistant.</small></td><td class="qty">2</td><td class="money">$22–30</td><td class="money">$44–60</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Ball bungees — 9", 100-pack</b><small><a href="https://www.amazon.com/Xpose-Safety-Bungee-Ball-Cords/dp/B07FDHNXMT" target="_blank" rel="noopener">Xpose Safety 9" 100-pk</a>. Same quantity as the 6" — you will use both.</small></td><td class="qty">2</td><td class="money">$22–30</td><td class="money">$44–60</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Lag screws, 3/8" × 14" hex head</b><small>20 legs + ~14 for the wing's bottom edge + spares. Zinc or hot-dip galv. <a href="https://boltdepot.com/Lag_bolts_Hex_head_Hot_dipped_galvanized_steel_3_8" target="_blank" rel="noopener">Bolt Depot</a> · <a href="https://www.amazon.com/Screws-Head-Steel-Zinc-Carton/dp/B005EH2N5E" target="_blank" rel="noopener">50-pc carton</a> is often cheaper than 40 singles.</small></td><td class="qty">40</td><td class="money">$3–4</td><td class="money">$120–160</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Climbing hangers, 10 mm</b><small>One per lag screw. ~$3.50–4.50 each. Money-saving alternative: two links of cut chain — more hassle than it saves at this quantity.</small></td><td class="qty">40</td><td class="money">$3.50–4.50</td><td class="money">$140–180</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Ratchet straps — 15 ft × 1", ~1,500 lb, S-hooks</b><small>20 vertical (one per leg) + 8 diagonal + 2 spare. They do not need to be heavy-duty; they need to be <em>present and tight</em>.</small></td><td class="qty">30</td><td class="money">$6–10</td><td class="money">$180–300</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>9/16" 6-point deep impact socket</b><small><b>6-point, not 12.</b> 12-point sockets slip and round off the lag heads. Buy two.</small></td><td class="qty">2</td><td class="money">~$12</td><td class="money">~$24</td><td><span class="badge e">est.</span></td></tr>
+        <tr class="subtotal"><td>Ship-ahead subtotal</td><td class="qty"></td><td class="money"></td><td class="money">$1,140–1,372 + freight</td><td></td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note" style="margin-top:10px">Anchoring hardware is deliberately <b>not</b> in this table — it
-    depends on the §2 decision. See §5 for both costed paths. <b>The F5-1 page shows conflicting stock
-    status</b> ("in stock and ready for shipping" alongside a pre-order notice) — call
-    <b>(864) 479-4880</b> or sales@tarps.com and confirm 22 units are on the shelf before you count on them.</p>
+    <p class="note" style="margin-top:10px"><b>Confirm F5-1 and FP-1 stock by phone before you count on
+    them.</b> The F5-1 listing has shown "in stock and ready for shipping" alongside a pre-order notice on
+    the same page. Call <b>(864) 479-4880</b> or sales@tarps.com and get 22 of each confirmed on the shelf.
+    <b>No cutting tools on this list</b> — there is nothing to cut.</p>
 
-    <h3 class="sub">4b · Reno pickup — order online, collect in store</h3>
+    <h3 class="sub">5b · Reno pickup — order online, collect in store</h3>
     <div class="tblwrap">
     <table>
       <thead><tr><th>Item</th><th class="qty">Qty</th><th class="money">Unit</th><th class="money">Line</th><th>Price</th></tr></thead>
       <tbody>
-        <tr><td class="item"><b>1" × 10 ft EMT steel conduit</b> — <a href="https://www.homedepot.com/p/1-in-x-10-ft-Electric-Metallic-Tube-EMT-Conduit-101568/100400409" target="_blank" rel="noopener">Home Depot (Allied #100400409)</a><small>51 needed (31 roof + 20 leg) + 3 spare. ~6.7 lb each. Oversize freight — never worth shipping, buy it in Reno.</small></td><td class="qty">54</td><td class="money">$15–20</td><td class="money">$810–1,080</td><td><span class="badge e">est.*</span></td></tr>
-        <tr><td class="item"><b>Duct tape (good brand)</b><small>Lashing and general repair — budget a roll per 3–4 legs</small></td><td class="qty">6</td><td class="money">$7</td><td class="money">~$42</td><td><span class="badge e">est.</span></td></tr>
-        <tr><td class="item"><b>4-lb engineer / drilling hammer</b><small>No rocks on the playa. Two hammers halves the pounding time. (Option A only.)</small></td><td class="qty">1–2</td><td class="money">$25–30</td><td class="money">$25–60</td><td><span class="badge e">est.</span></td></tr>
-        <tr><td class="item"><b>Stake caps + markers (solar lights / flag tape)</b><small>Every exposed stake capped and lit. Non-negotiable.</small></td><td class="qty">—</td><td class="money">—</td><td class="money">~$30</td><td><span class="badge e">est.</span></td></tr>
-        <tr class="subtotal"><td>Reno subtotal</td><td class="qty"></td><td class="money"></td><td class="money">$907–1,212</td><td></td></tr>
+        <tr><td class="item"><b>1" × 10 ft EMT steel conduit</b> — <a href="https://www.homedepot.com/p/1-in-x-10-ft-Electric-Metallic-Tube-EMT-Conduit-101568/100400409" target="_blank" rel="noopener">Home Depot (Allied #100400409)</a><small>51 needed (31 roof + 20 legs) + 3 spare. ~6.7 lb each, ~362 lb total. Oversize freight — never worth shipping, buy it in Reno.</small></td><td class="qty">54</td><td class="money">$16–23</td><td class="money">$864–1,242</td><td><span class="badge e">est.*</span></td></tr>
+        <tr><td class="item"><b>Step ladders, 6 ft</b><small><b>Required at 10 ft ceiling height</b> — you cannot reach a 10-ft header from the ground. Two minimum; four makes the cube-by-cube build much faster. Borrow if you can.</small></td><td class="qty">2–4</td><td class="money">$60–90</td><td class="money">$120–360</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Duct tape (good brand)</b><small>Lashing and repair — budget a roll per 3–4 legs</small></td><td class="qty">6</td><td class="money">$7</td><td class="money">~$42</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Push broom</b><small>The rain fix (§8) is a broom. Also the MOOP sweep.</small></td><td class="qty">1</td><td class="money">~$20</td><td class="money">~$20</td><td><span class="badge e">est.</span></td></tr>
+        <tr><td class="item"><b>Flagging tape + solar markers</b><small>Climbing hangers and strap runs sit at ankle height. Flag and light every one.</small></td><td class="qty">—</td><td class="money">—</td><td class="money">~$30</td><td><span class="badge e">est.</span></td></tr>
+        <tr class="subtotal"><td>Reno subtotal</td><td class="qty"></td><td class="money"></td><td class="money">$1,076–1,694</td><td></td></tr>
       </tbody>
     </table>
     </div>
     <p class="note" style="margin-top:10px">*Home Depot doesn't publish a price without a store selected;
-    electrical distributors currently list 1" EMT around $2.04/ft (~$20/stick) and big-box is normally
-    cheaper. <b>Call the Reno Pro Desk before ordering</b> — 54 sticks is a real dent in one store's rack,
+    the reference guide puts 1" EMT at about $23 a stick currently and big-box is usually at the low end of
+    the range. <b>Call the Reno Pro Desk before ordering</b> — 54 sticks is a real dent in one store's rack
     and they'll pull and stage it. Both Home Depot and Lowe's have Reno/Sparks stores; split the order if
     stock is short.</p>
+
+    <h3 class="sub">5c · Bring from home / borrow</h3>
+    <p class="note"><b>Impact wrench, 1/2" drive</b> — the single biggest time-saver on build day, with 34
+    lag screws to sink. A cheap impact driver will do it eventually; a real wrench does it in a fraction of
+    the time. <b>Bring every battery you own, charged.</b> Two wrenches if the camp can field them.
+    Also: eye protection, work gloves, a level or plumb line, and a marker for labelling.</p>
   </div>
 </section>
 
 <!-- ================= COST ================= -->
-<section>
-  <h2>5 · What it costs <span class="tag open">two paths, anchoring undecided</span></h2>
-  <div class="totals">
-    <div class="tot rec">
-      <span class="pick">Option A</span>
-      <h3>Candy-cane rebar anchoring</h3>
-      <div class="big">$2,000–2,775<small>≈ $2,400 midpoint, before tax</small></div>
-      <ul>
-        <li><span>Steel — 54 sticks EMT</span><span>$810–1,080</span></li>
-        <li><span>22 × F5-1 fittings + freight</span><span>$241–261</span></li>
-        <li><span>Roof tarp 30×40</span><span>$150–230</span></li>
-        <li><span>East wing aluminet <em>(quote)</em></span><span>$400–700</span></li>
-        <li><span>14 candy canes + 14 straps</span><span>$240–265</span></li>
-        <li><span>Bungees, tools, tape, caps</span><span>$162–237</span></li>
-      </ul>
-      <p class="note" style="margin-top:8px">≈ $200–280 a head at 10 campers. Frame and fittings are
-      reusable for many burns; the tarp lasts 1–3.</p>
-    </div>
-    <div class="tot">
-      <span class="pick" style="background:var(--open)">Option B</span>
-      <h3>Lag bolts + climbing hangers</h3>
-      <div class="big">$2,035–2,900<small>+ impact wrench if not borrowed</small></div>
-      <ul>
-        <li><span>Everything above except anchors</span><span>$1,763–2,508</span></li>
-        <li><span>20 × 3/8"×14" lag bolts</span><span>$80–120</span></li>
-        <li><span>20 × climbing hangers</span><span>$60–100</span></li>
-        <li><span>20 × vertical ratchet straps</span><span>$120–160</span></li>
-        <li><span>9/16" deep impact socket</span><span>~$12</span></li>
-        <li><span>Impact wrench</span><span>borrow / $150–200</span></li>
-      </ul>
-      <p class="note" style="margin-top:8px">Costs a bit more and needs real tools, but leaves zero trip
-      hazard and zero MOOP. Remember it still needs a strap per pole for uplift.</p>
-    </div>
+<section id="cost">
+  <h2>6 · What it costs</h2>
+  <div class="tot">
+    <h3>Total build — one anchoring system, wing already owned</h3>
+    <div class="big">$2,050–2,650<small>before tax · ≈ $205–265 a head at 10 campers</small></div>
+    <ul>
+      <li><span>Steel — 54 sticks of 1" × 10' EMT</span><span>$864–1,242</span></li>
+      <li><span>22 × F5-1 five-way fittings</span><span>$201</span></li>
+      <li><span>22 × FP-1 footers <em>(est.)</em></span><span>~$154</span></li>
+      <li><span>14 × 10×10 silver roof tarps</span><span>$232</span></li>
+      <li><span>East wing aluminet <em>(owned)</em></span><span>$0</span></li>
+      <li><span>400 ball bungees (200 × 6" + 200 × 9")</span><span>$88–120</span></li>
+      <li><span>40 × lag screws 3/8"×14"</span><span>$120–160</span></li>
+      <li><span>40 × climbing hangers</span><span>$140–180</span></li>
+      <li><span>30 × ratchet straps</span><span>$180–300</span></li>
+      <li><span>Sockets, tape, broom, flagging</span><span>~$116</span></li>
+    </ul>
+    <p class="note" style="margin-top:10px"><b>Not counted above:</b> ladders ($120–360 if you can't borrow)
+    and an impact wrench ($150–200 if nobody in camp has one). Both are reusable and both are worth
+    borrowing first.</p>
+    <p class="note" style="margin-top:8px">The frame, fittings and footers are good for many burns. The
+    tarps last one to three, and at $16.59 each replacing one is a non-event — which is the entire argument
+    for standardising on 10 × 10.</p>
   </div>
-  <div class="callout open" style="max-width:none">
-    <b>The east wing is the biggest unknown in both columns</b> — a $300 swing on an unquoted custom
-    panel. Get the ShadeClothStore quote first; it moves the total more than the anchoring choice does.
+  <div class="callout ok" style="max-width:none">
+    <b>Two things got much cheaper and much less risky this revision.</b> The east wing is already owned, so
+    a $400–700 unquoted custom order with a 3–4 week lead time came off the sheet entirely. And twelve
+    stock 10 × 10 tarps at $16.59 replace a single $150–230 30×40 tarp that had no spare, no
+    interchangeability, and a much worse rain-puddling failure mode.
   </div>
 </section>
 
-<!-- ================= LOGISTICS ================= -->
-<section>
-  <h2>6 · Logistics + build sequence</h2>
+<!-- ================= BUILD ================= -->
+<section id="build">
+  <h2>7 · Build sequence <span class="tag ok">Decided — tarps go on LAST</span></h2>
+  <div class="card">
+    <div class="rule">
+      <div class="rh">Rule — the one that actually gets people hurt</div>
+      <p><b>Do not attach a single tarp until the entire frame is up, aligned, drilled down, and fully
+      ratcheted.</b> A tarp on an unanchored frame is a sail on a tumbleweed. If even one vertical strap is
+      missing when a gust hits, that leg lifts and every pole attached to it bends. Bare steel poles catch
+      almost no wind — you can build the whole frame in a blow. You cannot handle tarps in one.</p>
+    </div>
+
+    <div class="bsteps">
+      <div class="bstep"><div>
+        <h4>Lay out</h4>
+        <p>Get all 54 poles, 20 footers and 20 five-ways on the ground, roughly where they'll be installed.
+        Decide the 5-way open-axis orientation now (§1) and rotate all 20 to match before anything goes
+        together.</p>
+      </div></div>
+      <div class="bstep"><div>
+        <h4>Build cube by cube</h4>
+        <p>Assemble one wall flat on the ground — two legs, one roof pole, two 5-ways. Prop it up by
+        inserting two more legs. Add the remaining roof poles. One person on a step ladder at each free
+        corner holds it while the last verticals go in. Then build the next wall on the ground beside it
+        and join. Eyebolts are hand-tight only here — they're just holding position.</p>
+      </div></div>
+      <div class="bstep"><div>
+        <h4>Align — before anything is anchored</h4>
+        <p>Stand at the end of a line of poles and close one eye. If the row is true, every pole behind the
+        front one disappears. Have someone nudge them while you sight. Do this for <b>every row and every
+        column</b>, and check plumb. Loosen and re-tighten eyebolts as needed. This is the last moment it's
+        free to fix.</p>
+      </div></div>
+      <div class="bstep hot"><div>
+        <h4>Drill down</h4>
+        <p>One 3/8" × 14" lag screw through each footer, with a climbing hanger under the head, into the
+        playa. 9/16" 6-point deep impact socket. One screw per footer — the other holes do nothing.
+        20 legs now; the wing's ~14 ground anchors come later.</p>
+      </div></div>
+      <div class="bstep hot"><div>
+        <h4>Ratchet — vertical, then diagonal</h4>
+        <p>A vertical strap at <b>every single leg</b>: over the 5-way, twisted once or twice around the
+        pole, S-hook into the climbing hanger, tightened hard. Then the 8 internal diagonals. Only when
+        every strap is on and tight is the structure finished. <b>Nothing goes on the roof before this
+        step is complete.</b></p>
+      </div></div>
+      <div class="bstep"><div>
+        <h4>Roof tarps</h4>
+        <p>One 10×10 per bay. Bungee the four corners first, then work every remaining grommet. One bungee
+        length per edge (§3). Twelve panels, all identical, all interchangeable.</p>
+      </div></div>
+      <div class="bstep"><div>
+        <h4>East wing</h4>
+        <p>Hang the top edge off the two perimeter poles on the east face, mark where each bottom grommet
+        lands, drill a lag screw + climbing hanger just outside each mark, and bungee it down drum-tight.
+        Sloped, never vertical.</p>
+      </div></div>
+      <div class="bstep"><div>
+        <h4>Flag, light, and re-check</h4>
+        <p>Flag and light every hanger and strap run. Then <b>re-tighten every eyebolt, strap and lag screw
+        daily</b> — things work loose in the heat cycle and the vibration.</p>
+      </div></div>
+    </div>
+
+    <p class="note" style="margin-top:14px"><b>Crew and time:</b> 5–6 people, two to four step ladders. The
+    cube-by-cube method means you're never lifting the whole 1,200 sq ft assembly at once — which is the
+    other reason it beats build-flat-and-walk-it-up. Budget most of a day and start early enough that
+    you're ratcheting in daylight.</p>
+    <p class="note" style="margin-top:8px"><b>Salty-burner tip worth adopting even with zero cuts:</b>
+    paint or tape one end of a pole batch a unique colour before you leave home. It won't distinguish
+    lengths — everything is 10 ft — but it makes it obvious at a glance which poles are yours when three
+    camps' steel ends up in the same pile.</p>
+  </div>
+</section>
+
+<!-- ================= FIELD MANUAL ================= -->
+<section id="field">
+  <h2>8 · Field manual <span class="tag orange">Read before you go, not during</span></h2>
+  <div class="fm">
+    <div class="fmc">
+      <h4>It's windy</h4>
+      <p>Above ~50 mph you will <b>not</b> be able to manipulate, hang, fix, or stretch a tarp. It isn't a
+      question of trying harder — it's not possible. Do exactly one thing: <b>pull the bungees and take
+      down any tarp that's threatening the frame.</b> Then get into an RV, truck, or shipping container
+      and wait it out. The heroics you'll see other camps performing accomplish almost nothing and get
+      people hurt.</p>
+    </div>
+    <div class="fmc">
+      <h4>It's raining</h4>
+      <p>Solid tarps pond. A full bay of standing water pulls down hard enough to threaten the structure —
+      this took camps out in 2023 and 2025. Fix: <b>pull two bungees from one edge of the affected panel
+      to open a spout</b>, then push the centre up gently with the broom to drain it. Twelve small panels
+      pond far less dangerously than one 1,200 sq ft sheet — that's a real safety gain from the 10×10
+      decision.</p>
+    </div>
+    <div class="fmc">
+      <h4>Thunder</h4>
+      <p>This is a 1,200 sq ft grounded steel grid. If you see lightning or hear thunder, <b>get yourself
+      and anyone nearby away from it</b> and into a vehicle, RV, truck, or container. Not under the shade —
+      away from it.</p>
+    </div>
+    <div class="fmc">
+      <h4>Daily walk-around</h4>
+      <p>Re-tighten every ratchet strap, every eyebolt, and every lag screw <b>every day</b>. Heat cycling
+      and constant vibration back everything off. Two minutes a pole, once a day, is the whole maintenance
+      programme.</p>
+    </div>
+    <div class="fmc">
+      <h4>Don't slope the roof</h4>
+      <p>It's tempting and it's wrong. The <b>flat top is load-bearing design</b>, not laziness. Playa wind
+      is horizontal; a flat roof lets it pass. Give it any pitch and you've built a wing — it lifts the
+      whole structure and flings it.</p>
+    </div>
+    <div class="fmc">
+      <h4>The twang</h4>
+      <p>A strap running straight from the 5-way to the hanger vibrates and sings in wind, loudly, all
+      night, right over where people sleep. <b>Twist it once or twice around the leg</b> on the way down.
+      Once or twice — more and you can't tension it properly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALENDAR ================= -->
+<section id="cal">
+  <h2>9 · Calendar <span class="tag orange">Gate opens Sun Aug 30 · today is Sat Aug 1</span></h2>
   <div class="card">
     <div class="timeline">
-      <div class="step"><div class="when">This week</div><div>
-        <h4>Quote the aluminet wing — do this first</h4>
-        <p>3–4 week lead against an Aug 30 gate leaves no slack. Call ShadeClothStore (866-727-6658)
-        before anything else on this list; if the lead time doesn't clear, switch to a stock-size panel
-        that ships next day.</p>
+      <div class="step"><div class="when">Sat Aug 1 – Mon Aug 3<em>4 weeks before gate</em></div><div>
+        <h4>Order everything that ships — all of it, by Mon Aug 3</h4>
+        <p>22 F5-1 fittings + 22 FP-1 footers (phone Tarps.com first to confirm stock on both), 14 tarps,
+        400 bungees, 40 lag screws, 40 climbing hangers, 30 ratchet straps, 2 impact sockets. There is no
+        longer a long-lead item on this build, but four weeks is not a lot of slack for eight separate
+        vendors. Placing every order in one sitting is the single highest-leverage hour on this calendar.</p>
       </div></div>
-      <div class="step"><div class="when">This week</div><div>
-        <h4>Order fittings + soft goods to home</h4>
-        <p>22 × F5-1 from Tarps.com (confirm stock by phone — the listing is ambiguous), tarp, bungees,
-        cutter. Roughly 90 lb of boxes: pack into the vehicles, or ship to your Reno hotel — most hold
-        packages for arriving guests. Anchoring hardware waits on the §2 decision, but <b>don't let it
-        wait long</b>.</p>
+      <div class="step"><div class="when">Fri Aug 7<em>3⅓ weeks before gate</em></div><div>
+        <h4>Confirm every shipment has actually shipped</h4>
+        <p>Check tracking on all eight orders. Anything still "processing" after five days gets a phone
+        call on Fri Aug 7 — not Mon Aug 10. This is the last date you can re-source from a different vendor
+        and still have it land in time.</p>
       </div></div>
-      <div class="step"><div class="when">Aug 10–20</div><div>
-        <h4>Dry-fit and label</h4>
-        <p>With one fitting type there's nothing to sort — but still dry-fit one bay in a driveway to
-        confirm the eyebolts seat on real EMT, coil straps, and bag bungees by panel. Ten minutes of
-        prep saves an hour on playa.</p>
+      <div class="step"><div class="when">Mon Aug 10 – Fri Aug 14<em>3 to 2⅓ weeks before gate</em></div><div>
+        <h4>Goods land · dry-fit one cube in a driveway</h4>
+        <p>Build a single 10×10 cube with real fittings on real EMT before it matters. Confirm the eyebolts
+        seat, confirm the 5-way orientation rule makes sense to whoever's leading the build, hang one tarp
+        and see which bungee length it actually wants. Ten minutes here saves an hour on playa.</p>
       </div></div>
-      <div class="step"><div class="when">Aug 20–26</div><div>
+      <div class="step"><div class="when">Mon Aug 17<em>2 weeks before gate</em></div><div>
+        <h4>Inspect last year's aluminet wing</h4>
+        <p>Unroll the 14 × 20, check for tears and UV damage, and <b>count the grommets</b> — that number
+        sets how many wing ground anchors you need, and you have lag screws and hangers on hand to top up
+        if the count is higher than the ~14 estimated here. Repair any torn grommet now.</p>
+      </div></div>
+      <div class="step"><div class="when">Fri Aug 21<em>1⅓ weeks before gate</em></div><div>
         <h4>Place the Reno pickup order</h4>
-        <p>54 × EMT + tape + hammers, online for store pickup. Pickup orders are typically held about a
-        week — confirm the window in your order email and call the Pro Desk so they stage 54 sticks.</p>
+        <p>54 × 10 ft EMT, ladders, tape, broom, flagging — online for store pickup. Call the Pro Desk so
+        they pull and stage 54 sticks. Pickup orders are typically held about a week; confirm the window in
+        your order email so it doesn't expire before you drive.</p>
       </div></div>
-      <div class="step"><div class="when">Reno day (Aug 28–29)</div><div>
-        <h4>Pick up steel + cutting party</h4>
-        <p>Collect the conduit, then cut in the lot: <b>20 legs at 8'-0", nothing else</b>. Deburr every
-        end. Keep all 20 offcuts — 18 are your socket plugs. 10-ft sticks ride inside a 24-ft RV down the
-        aisle, strapped.</p>
+      <div class="step"><div class="when">Mon Aug 24 – Wed Aug 26<em>6 to 4 days before gate</em></div><div>
+        <h4>Pack, sort, charge</h4>
+        <p>Bag bungees by length (6" and 9" in separate labelled bags — you'll thank yourself). Count out
+        fittings, footers, screws and hangers into labelled bins. <b>Charge every impact wrench battery.</b>
+        Load the vehicles.</p>
       </div></div>
-      <div class="step"><div class="when">On playa</div><div>
-        <h4>Assemble</h4>
-        <p>Lay the roof grid out flat and pin all 20 fittings → walk it up one side at a time onto legs
-        (5–6 people at this size) → plug the 18 open sockets → anchor per §2 → east wing → cap and light
-        every stake. <b>Re-tighten every eyebolt, strap and stake daily.</b> If a serious blow is
-        forecast, dropping or rolling the roof tarp beats losing the frame.</p>
+      <div class="step"><div class="when">Fri Aug 28<em>2 days before gate</em></div><div>
+        <h4>Drive · collect the steel in Reno</h4>
+        <p>Pick up 54 sticks. Ten-foot EMT rides inside a 24-ft RV down the centre aisle, strapped down.
+        Nothing gets cut — it goes from the rack to the playa exactly as it comes.</p>
       </div></div>
-    </div>
-
-    <div class="decision">
-      <div class="dh">Unresolved · needs Bulat's call</div>
-      <h4>Does the tarp go on before or after the lift?</h4>
-      <div class="opts">
-        <div class="opt">
-          <h5>Tarp on while flat (v1 plan)</h5>
-          <p>Bungee the tarp to the grid on the ground, then walk the whole assembly up.</p>
-          <ul>
-            <li>No ladder work, no reaching over a 9-ft roof.</li>
-            <li>Much faster with a small crew.</li>
-            <li><b>Risk:</b> the frame becomes a 1,200 sq ft sail <em>during</em> the lift, before a single
-            anchor is in. One gust mid-lift and it's gone — with people under it.</li>
-          </ul>
-        </div>
-        <div class="opt">
-          <h5>Tarp last (reference guide)</h5>
-          <p>Lift and fully anchor the bare frame, then put the roof on.</p>
-          <ul>
-            <li>Bare frame has almost no wind area — the dangerous window disappears.</li>
-            <li>This is what the experienced-builder guide specifies.</li>
-            <li><b>Cost:</b> ladders, more people, slower, awkward at 8-ft eave height.</li>
-          </ul>
-        </div>
-      </div>
-      <p class="note" style="margin-top:12px">The sequence above deliberately says "anchor → then wing"
-      without resolving this. <b>The safety argument favours tarp-last</b>, and it's what the guide says,
-      but it's Bulat's call and it changes the crew size and the day's schedule.</p>
+      <div class="step"><div class="when">Sat Aug 29<em>1 day before gate</em></div><div>
+        <h4>Stage</h4>
+        <p>Position for gate. Sleep. Build day is long and the wrench work is in the sun.</p>
+      </div></div>
+      <div class="step gate"><div class="when">Sun Aug 30<em>gate opens</em></div><div>
+        <h4>Build day — §7, in order</h4>
+        <p>Lay out → cube by cube → align → drill → ratchet → <em>then</em> tarps → wing → flag and light.
+        Start early enough to finish ratcheting in daylight.</p>
+      </div></div>
     </div>
   </div>
 </section>
 
-<!-- ================= ALSO OPEN ================= -->
-<section>
-  <h2>7 · Also flagged, not yet decided</h2>
+<!-- ================= STILL OPEN ================= -->
+<section id="open">
+  <h2>10 · Still open <span class="tag open">2 items</span></h2>
   <div class="card">
-    <div class="opts" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <div class="opt"><h5>Diagonal ratchet straps</h5><p>Cross-bracing the roof bays against racking.
-      Cheap insurance on a frame this wide, but not specced or costed. Needs a call on how many and where.</p></div>
-      <div class="opt"><h5>Sloped mesh side panels</h5><p>Shade mesh on the SW (wind) faces, angled rather
-      than vertical. Blocks low sun without turning the wall into a sail. Quantity depends on which sides
-      the RVs already block.</p></div>
-      <div class="opt"><h5>Rain puddling</h5><p>A flat single tarp ponds in a downpour, and a pond that
-      size can pull the frame down. Mitigations: a slight built-in slope, a centre ridge stick, or just
-      pushing water off with a broom. Unresolved.</p></div>
-      <div class="opt"><h5>Unfinished v1 edit</h5><p>A prior working session had a change to the build sheet
-      that never landed. <b>Bulat — what were you adding?</b> It's not in the current file and it isn't
-      captured anywhere in the project notes.</p></div>
+    <div class="opts">
+      <div class="opt"><h5>Which axis faces east</h5><p>Determines which two perimeter poles carry the
+      wing's top edge. 40-ft side east → the wing covers half that face. 30-ft side east → it covers two of
+      three bays. Needs settling <b>before the frame is squared and drilled down.</b></p></div>
+      <div class="opt"><h5>Diagonal strap count</h5><p>§2 specs 8 as a starting point — four corner roof
+      bays plus four in the vertical planes of the wind and wing faces. The right number depends on which
+      sides the RVs already shelter, which you'll only know on site. Buy 30 straps so you have the option.</p></div>
+    </div>
+    <div class="callout ok" style="margin-top:16px">
+      <b>Closed this revision:</b> anchoring is footers + 3/8"×14" lag screws + climbing hangers +
+      a ratchet strap at every leg. Build sequence is tarps-last, per the reference guide's most emphatic
+      rule. Roof is twelve 10 × 10s, not one big sheet. Every pole is 10 ft — nothing gets cut. The east
+      wing is the aluminet panel already in the pile.
     </div>
   </div>
 </section>
 
 <footer>
-  Rebuilt to the 40 × 30 spec — supersedes the 36 × 30 v1 sheet entirely. Fitting price verified against
-  Tarps.com on July 31, 2026; steel and tarp prices move, so re-verify the big lines before ordering.
-  Method scaled from The Playa Labs' flat-top tutorial plus an experienced-builder reference guide.
+  Built to the 40 × 30 spec at 10 ft height, zero cuts. Fitting price verified against Tarps.com;
+  tarp price verified against Canopies&amp;Tarps; steel prices move, so re-verify the big lines before
+  ordering. Technique, anchoring spec, ratchet-strap load path, build order and field procedures are
+  consolidated from <em>“Guide to Burning Man Shade Structures”</em> — an experienced builder's
+  seven-year field guide — with the Playa Labs flat-top tutorial for the frame method.
   <div class="srcs">
     <a href="https://www.theplayalabs.com/shady-business" target="_blank" rel="noopener">PlayaLabs tutorial</a>
     <a href="https://tarps.com/products/1-flat-roof-5-way-fitting-f5-1" target="_blank" rel="noopener">Tarps.com F5-1</a>
-    <a href="https://tarps.com/collections/1-flat-canopy-fittings-90-angles" target="_blank" rel="noopener">Tarps.com 1" flat fittings</a>
+    <a href="https://tarps.com/products/1-foot-pad-fp-1" target="_blank" rel="noopener">Tarps.com FP-1 footer</a>
     <a href="https://www.homedepot.com/p/1-in-x-10-ft-Electric-Metallic-Tube-EMT-Conduit-101568/100400409" target="_blank" rel="noopener">HD 1" EMT</a>
-    <a href="https://shadeclothstore.com/product/custom-shade-cloth/" target="_blank" rel="noopener">ShadeClothStore custom</a>
+    <a href="https://canopiesandtarps.com/silver-tarp-10x10.html" target="_blank" rel="noopener">10×10 silver tarp</a>
+    <a href="https://boltdepot.com/Lag_bolts_Hex_head_Hot_dipped_galvanized_steel_3_8" target="_blank" rel="noopener">Bolt Depot lag screws</a>
     <a href="https://burningman.org/black-rock-city/preparation/camping-tips/securing-your-structure/" target="_blank" rel="noopener">BM Securing Your Structure</a>
   </div>
 </footer>
