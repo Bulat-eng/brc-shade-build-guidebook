@@ -8,6 +8,11 @@
 # decision rationale — no reason to publish it. Keep local.
 CLAUDE.md
 
+# Session handoff notes. Internal working state, supplier phone strategy,
+# and account details. Keep local — and note the file SAYS it's untracked,
+# so this entry is what makes that claim true.
+HANDOFF.md
+
 # Superseded v1 (36×30, wrong spec). Kept on disk for reference only;
 # must never enter the public history.
 _archive/
