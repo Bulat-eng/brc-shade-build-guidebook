@@ -219,7 +219,7 @@ footer a{font-family:var(--mono);font-size:12px}
   <a href="#frame">1 · Frame</a>
   <a href="#anchor">2 · Anchoring</a>
   <a href="#tarps">3 · Roof tarps + bungees</a>
-  <a href="#wing">4 · East wing</a>
+  <a href="#wing">4 · Orientation + wing</a>
   <a href="#shop">5 · Shopping list</a>
   <a href="#cost">6 · Cost</a>
   <a href="#build">7 · Build sequence</a>
@@ -621,11 +621,100 @@ footer a{font-family:var(--mono);font-size:12px}
 
 <!-- ================= EAST WING ================= -->
 <section id="wing">
-  <h2>4 · East wing <span class="tag ok">Already owned — 14 × 20 silver aluminet</span></h2>
+  <h2>4 · Orientation + east wing <span class="tag ok">Already owned — 14 × 20 silver aluminet</span></h2>
   <div class="card">
-    <p>The east-facing wing is the <b>14' × 20' silver aluminet panel purchased last year</b>. Nothing to
+    <p>The morning-sun wing is the <b>14' × 20' silver aluminet panel purchased last year</b>. Nothing to
     order, nothing to quote, no lead time — it is in the pile. That removes what used to be the single
-    most schedule-critical line on this sheet.</p>
+    most schedule-critical line on this sheet. It has been called the "east wing" throughout this project;
+    the orientation math below shows it actually faces <b>north-east</b>, which is a real distinction and
+    not a pedantic one.</p>
+
+    <h3 class="sub">First: the city grid is 45° off the compass</h3>
+    <p>This is the thing that makes the whole "east wing" idea confusing, and it is worth getting straight
+    before anyone picks up a pole. <b>Black Rock City's 12:00 axis points northeast, not north</b> — so
+    every street in the city runs diagonal to the compass. Our plot's street line runs <b>NE–SW</b>, which
+    means a frame squared to the street has faces pointing NE, SE, SW and NW.</p>
+
+    <div class="callout">
+      <b>Consequence: no side of this structure faces east.</b> Not one. The sun rises at about
+      <b>79°</b> in late August and sets at about <b>281°</b> — and our four faces sit at 45°, 135°, 225°
+      and 315°. The closest any face gets to the sunrise is <b>34° off</b>. "Which side faces east" was
+      the wrong question; the right one is <em>which face catches the low sun</em>, and that has a clean
+      answer.
+    </div>
+
+    <svg viewBox="0 0 700 560" width="100%" role="img" aria-label="Plan view showing the shade structure rotated 45 degrees relative to the compass, with the sunrise at 79 degrees striking the north-east face, sunset at 281 degrees on the north-west face, and prevailing wind from the south-west">
+      <!-- compass ring -->
+      <circle cx="350" cy="265" r="250" fill="none" stroke="#CBC0A6" stroke-width="1" stroke-dasharray="3 5"/>
+      <g font-size="13" fill="#8d8265" text-anchor="middle" font-weight="600">
+        <text x="350" y="26">N</text><text x="688" y="270">E</text>
+        <text x="350" y="546">S</text><text x="16" y="270">W</text>
+      </g>
+
+      <!-- sun path arc, sunrise -> south -> sunset -->
+      <path d="M 595.4 217.3 A 250 250 0 1 1 104.6 312.7" fill="none" stroke="#E9540D" stroke-width="2" stroke-dasharray="6 5" opacity="0.75"/>
+      <circle cx="595.4" cy="217.3" r="8" fill="#F2B01E" stroke="#22262B" stroke-width="1.5"/>
+      <circle cx="104.6" cy="312.7" r="8" fill="#F2B01E" stroke="#22262B" stroke-width="1.5" opacity="0.55"/>
+      <circle cx="350" cy="515" r="7" fill="#F2B01E" stroke="#22262B" stroke-width="1.5" opacity="0.4"/>
+      <g font-size="11.5" fill="#22262B">
+        <text x="694" y="196" text-anchor="end">SUNRISE ≈ 79°</text>
+        <text x="694" y="211" text-anchor="end" fill="#5b6067">the low, baking one</text>
+        <text x="8" y="296">SUNSET ≈ 281°</text>
+        <text x="8" y="311" fill="#5b6067">also low, also baking</text>
+        <text x="378" y="506" fill="#5b6067">noon — sun due S, high overhead</text>
+      </g>
+
+      <!-- structure, rotated 45deg -->
+      <polygon points="473.7,247.3 367.7,141.3 226.3,282.7 332.3,388.7" fill="#D3DEE6" stroke="#44586B" stroke-width="4" opacity="0.9"/>
+      <!-- the aluminet wing on the NE face, 20ft of the 30ft side -->
+      <polygon points="367.7,141.3 438.4,212.0 473.0,177.4 402.3,106.7" fill="#8CA0B0" stroke="#22262B" stroke-width="2" opacity="0.85"/>
+      <text x="455" y="128" font-size="11.5" fill="#22262B" font-weight="600" transform="rotate(-45 455 128)">14×20 ALUMINET</text>
+
+      <!-- face labels -->
+      <g font-size="11.5" fill="#22262B" font-weight="600">
+        <text x="430" y="196" transform="rotate(45 430 196)" text-anchor="middle">30 FT — NE, MORNING SUN</text>
+        <text x="410" y="322" transform="rotate(-45 410 322)" text-anchor="middle">40 FT — SE</text>
+        <text x="292" y="208" transform="rotate(-45 292 208)" text-anchor="middle" fill="#8A5A00">40 FT — NW, EVENING SUN</text>
+        <text x="272" y="341" transform="rotate(45 272 341)" text-anchor="middle" fill="#E9540D">30 FT — SW, WIND</text>
+      </g>
+
+      <!-- wind arrow from SW -->
+      <g stroke="#E9540D" stroke-width="4" fill="none">
+        <line x1="150" y1="465" x2="243" y2="372"/>
+        <path d="M243 372 l-4 15 M243 372 l-15 4"/>
+      </g>
+      <text x="96" y="486" font-size="12" fill="#E9540D" font-weight="600">PREVAILING WIND (SW)</text>
+
+      <!-- north arrow -->
+      <g stroke="#22262B" stroke-width="2.5" fill="none">
+        <line x1="350" y1="70" x2="350" y2="38"/><path d="M350 38 l-6 10 M350 38 l6 10"/>
+      </g>
+    </svg>
+
+    <div class="callout ok">
+      <b>The wing goes on the NE-facing side, and that should be a 30-ft side.</b> Sunrise lands 34° off
+      that face — the most direct hit of any face on the frame. Making it a 30-ft side means the 20-ft
+      panel covers <b>2 of 3 bays (67%)</b> of it, instead of 2 of 4 (50%) if you put the 40-ft side there.
+      So run the <b>40-ft dimension along the street</b> and the <b>30-ft dimension back into the plot</b>.
+    </div>
+
+    <p>Two things fall out of that choice for free, and both are worth having:</p>
+    <ul class="tight">
+      <li><b>The wing ends up on the lee side.</b> Prevailing wind is from the SW, which hits the opposite
+      face. The frame itself shelters the one big mesh panel on the build — the exact thing you would
+      otherwise worry about in a blow.</li>
+      <li><b>The windward face is the narrow one.</b> Putting the 30-ft dimension on the NE–SW axis means
+      the SW face presenting to the wind is 30 ft, not 40.</li>
+    </ul>
+
+    <div class="callout open">
+      <b>What this does not solve: the evening sun.</b> The geometry is symmetric — sunset at 281° lands
+      <b>34° off the NW face</b>, the mirror image of sunrise on the NE face. That face is a 40-ft side
+      and it has nothing on it. Late-afternoon sun at BRC is at least as punishing as morning sun, and it
+      arrives when people are actually in camp. <b>A second mesh panel on the NW face is the highest-value
+      addition to this build</b> — it is not in the parts list or the budget, and it should be considered
+      before ordering. It must be mesh, never a solid tarp.
+    </div>
 
     <div class="callout ok">
       <b>Aluminet is the right material for this by the guide's own rule.</b> Side panels must be mesh, and
@@ -705,11 +794,12 @@ footer a{font-family:var(--mono);font-size:12px}
       <li>The wing is why the <b>diagonal ratchet straps in §2 are not optional.</b></li>
     </ul>
 
-    <div class="callout open">
-      <b>One thing to confirm:</b> which axis of the frame faces east. If the 40-ft side faces east the
-      20-ft wing covers half of it; if the 30-ft side faces east it covers two of three bays. Both work —
-      but it determines which two perimeter poles the top edge hangs from, and it should be settled before
-      the frame is squared and drilled down, not after.
+    <div class="callout">
+      <b>Where it physically sits:</b> a 14-ft panel dropping from a 10-ft eave to the ground projects
+      <b>9'10" horizontally</b> and lands at a <b>46° slope</b> — which is almost exactly the 45° the guide
+      calls ideal for a sloped side panel. Budget that ten feet of ground on the NE side when you place the
+      frame on the plot: the wing's bottom edge and its anchors land <em>outside</em> the 40 × 30 footprint,
+      and that strip needs to be yours, not a neighbour's or a walkway.
     </div>
   </div>
 </section>
@@ -879,7 +969,7 @@ footer a{font-family:var(--mono);font-size:12px}
       </div></div>
       <div class="bstep"><div>
         <h4>East wing</h4>
-        <p>Hang the top edge off the two perimeter poles on the east face, mark where each bottom grommet
+        <p>Hang the top edge off the two perimeter poles on the <b>NE face</b> (§4), mark where each bottom grommet
         lands, drill a lag screw + climbing hanger just outside each mark, and bungee it down drum-tight.
         Sloped, never vertical.</p>
       </div></div>
@@ -1023,18 +1113,23 @@ footer a{font-family:var(--mono);font-size:12px}
       through</b> — only the two anchor-hardware links arrived. Send it and it goes straight in. Lighting is
       not cosmetic here: §2 requires every climbing hanger and strap run flagged and lit, and those sit at
       ankle height around a 140-ft perimeter.</p></div>
-      <div class="opt"><h5>Which axis faces east</h5><p>Determines which two perimeter poles carry the
-      wing's top edge. 40-ft side east → the wing covers half that face. 30-ft side east → it covers two of
-      three bays. Needs settling <b>before the frame is squared and drilled down.</b></p></div>
+      <div class="opt"><h5>A second mesh panel on the NW face</h5><p>Turned up by the §4 orientation math:
+      sunset lands 34° off the NW face, an exact mirror of sunrise on the NE. That 40-ft face is bare, and
+      evening sun arrives when people are actually in camp. <b>Not in the parts list or the budget</b> —
+      worth deciding before you order. Mesh only, never solid.</p></div>
       <div class="opt"><h5>Diagonal strap count</h5><p>§2 specs 8 as a starting point — four corner roof
       bays plus four in the vertical planes of the wind and wing faces. The right number depends on which
       sides the RVs already shelter, which you'll only know on site. Buy 30 straps so you have the option.</p></div>
     </div>
     <div class="callout ok" style="margin-top:16px">
-      <b>Closed this revision:</b> anchoring is footers + 3/8"×14" lag screws + climbing hangers +
-      a ratchet strap at every leg. Build sequence is tarps-last, per the reference guide's most emphatic
-      rule. Roof is twelve 10 × 10s, not one big sheet. Every pole is 10 ft — nothing gets cut. The east
-      wing is the aluminet panel already in the pile.
+      <b>Closed this revision: orientation.</b> The city grid runs 45° off the compass, so no face of this
+      frame points east. Sunrise (79°) lands on the <b>NE face</b> — put the <b>30-ft side there</b> so the
+      20-ft wing covers 2 of 3 bays, run the 40-ft side along the street, and the wing ends up on the lee
+      side with the narrow face into the wind. See §4.
+      <br><br>
+      <b>Closed earlier:</b> anchoring is footers + 3/8"×14" lag screws + climbing hangers + a ratchet strap
+      at every leg. Build sequence is tarps-last. Roof is twelve 10 × 10s, not one big sheet. Every pole is
+      10 ft — nothing gets cut. The east wing is the aluminet panel already in the pile.
     </div>
   </div>
 </section>
