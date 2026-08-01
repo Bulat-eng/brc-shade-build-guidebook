@@ -1,0 +1,19 @@
+# ---------------------------------------------------------------
+# This repo is PUBLIC and git history is permanent. Anything listed
+# here is deliberately kept out of the published history — removing
+# a file in a later commit does NOT erase it from history.
+# ---------------------------------------------------------------
+
+# Project brief / internal working notes. Names an employer and camp
+# decision rationale — no reason to publish it. Keep local.
+CLAUDE.md
+
+# Superseded v1 (36×30, wrong spec). Kept on disk for reference only;
+# must never enter the public history.
+_archive/
+
+# Local tooling
+.claude/
+
+# macOS
+.DS_Store
